@@ -49,20 +49,54 @@ const SweatherApp = () => {
       });
   };
 
+  const isDaytimeNow = (data) => {
+    const currentTime = new Date().getTime() / 1000;
+    return currentTime > data.sys.sunrise && currentTime < data.sys.sunset;
+  };
+
   const getBackgroundImage = (weatherCode) => {
     if (typeof weatherCode === 'number') {
-      if (weatherCode >= 200 && weatherCode < 300) {
-        return 'https://fondosmil.com/fondo/57234.jpg';
-      } else if (weatherCode >= 300 && weatherCode < 600) {
-        return 'https://i.gifer.com/GYlk.gif';
-      } else if (weatherCode >= 600 && weatherCode < 700) {
-        return 'https://www.todofondos.net/wp-content/uploads/3840x2160-Invierno-Sunset-con-nieve-4K-Ultra-HD-Wallpaper-scaled.jpg';
+      const isDaytime = climate?.sys?.sunrise && climate?.sys?.sunset ? isDaytimeNow(climate) : true;
+      const isRaining = weatherCode >= 500 && weatherCode <= 599;
+      const isSnowing = weatherCode >= 600 && weatherCode <= 699;
+      const isStormy = weatherCode >= 200 && weatherCode <= 299;
+
+      if (isStormy) {
+        if (isDaytime) {
+          return 'URL_DE_LA_IMAGEN_DE_TORMENTA_DE_DÍA';
+        } else {
+          return 'URL_DE_LA_IMAGEN_DE_TORMENTA_DE_NOCHE';
+        }
+      } else if (isSnowing) {
+        if (isDaytime) {
+          return 'URL_DE_LA_IMAGEN_DE_NIEVE_DE_DÍA' || 'LINK_ACTUAL_DE_IMAGEN_DE_NIEVE_DE_DÍA';
+        } else {
+          return 'URL_DE_LA_IMAGEN_DE_NIEVE_DE_NOCHE' || 'LINK_ACTUAL_DE_IMAGEN_DE_NIEVE_DE_NOCHE';
+        }
+      } else if (isRaining) {
+        if (isDaytime) {
+          return 'https://usagif.com/wp-content/uploads/rainy-10.gif';
+        } else {
+          return 'https://fondosmil.com/fondo/27668.jpg';
+        }
       } else if (weatherCode >= 700 && weatherCode < 800) {
-        return 'https://images5.alphacoders.com/103/1035809.jpg';
+        if (isDaytime) {
+          return 'https://i.gifer.com/DgUQ.gif';
+        } else {
+          return 'https://i.pinimg.com/originals/82/67/fd/8267fd1f2f023f6e682bb919c5a0d1d8.gif';
+        }
       } else if (weatherCode === 800) {
-        return 'https://www.wallpaperflare.com/static/1005/114/442/fife-sunset-photography-green-wallpaper.jpg';
+        if (isDaytime) {
+          return 'https://z101digital.com/wp-content/uploads/2019/03/sol-cielo-nubes-17032019-onamet.gif';
+        } else {
+          return 'https://media.tenor.com/0pwmXoNB7EkAAAAC/estrellas-cielo.gif';
+        }
       } else if (weatherCode > 800 && weatherCode < 900) {
-        return 'https://z101digital.com/wp-content/uploads/2019/03/sol-cielo-nubes-17032019-onamet.gif';
+        if (isDaytime) {
+          return 'https://thumbs.gfycat.com/PinkTautChrysomelid-size_restricted.gif';
+        } else {
+          return 'https://thumbs.gfycat.com/GlaringPassionateIndianpangolin-size_restricted.gif';
+        }
       } else {
         return '';
       }
