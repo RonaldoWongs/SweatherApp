@@ -63,15 +63,15 @@ const SweatherApp = () => {
 
       if (isStormy) {
         if (isDaytime) {
-          return 'URL_DE_LA_IMAGEN_DE_TORMENTA_DE_DÍA';
+          return 'https://3.bp.blogspot.com/-NkDKe4L6ebk/W4aMF2kRIXI/AAAAAAAAIZ8/DI-E3dSyv_A2I_3eTCP4F-lDlNT39jgUgCLcBGAs/s640/rayo%2Bgif1.gif';
         } else {
-          return 'URL_DE_LA_IMAGEN_DE_TORMENTA_DE_NOCHE';
+          return 'https://thumbs.gfycat.com/YoungLivelyFlycatcher-max-1mb.gif';
         }
       } else if (isSnowing) {
         if (isDaytime) {
-          return 'URL_DE_LA_IMAGEN_DE_NIEVE_DE_DÍA' || 'LINK_ACTUAL_DE_IMAGEN_DE_NIEVE_DE_DÍA';
+          return 'https://delcuetoyasoc.files.wordpress.com/2010/12/bk-blu-nieve-animaciones-016.gif';
         } else {
-          return 'URL_DE_LA_IMAGEN_DE_NIEVE_DE_NOCHE' || 'LINK_ACTUAL_DE_IMAGEN_DE_NIEVE_DE_NOCHE';
+          return 'https://i.gifer.com/GUk.gif';
         }
       } else if (isRaining) {
         if (isDaytime) {
